@@ -5,8 +5,108 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Сalculator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Calculator" Height="400" Width="710" MinHeight="400" MinWidth="710">
+<Grid>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="5*" MinWidth="380"/>
+        <ColumnDefinition Width="2*" MinWidth="320"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="5*"/>
+    </Grid.RowDefinitions>
 
+    <TabControl Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <TabItem Header="Переменные" FontSize="18">
+            <Grid Background="#FFE5E5E5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <TextBox x:Name="VariableNameTextBox" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="x" VerticalAlignment="Top" Width="30" Height="30" FontSize="20" TextAlignment="Center"/>
+                <Label Content="=" HorizontalAlignment="Left" Margin="45,0,0,0" VerticalAlignment="Top" FontSize="24" Height="40" Width="26"/>
+                <TextBox x:Name="VariableValueTextBox" Margin="76,11,105,0" TextWrapping="Wrap" Text="123" VerticalAlignment="Top" Height="29" FontSize="20"/>
+                <Button Content="Добавить" Margin="0,11,10,0" VerticalAlignment="Top" Height="29" FontSize="16" HorizontalAlignment="Right" Width="84"/>
+
+                <ScrollViewer Margin="5,50,5,5">
+                    <ItemsControl ItemsSource="{Binding Variables}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid HorizontalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding}" FontSize="20" VerticalAlignment="Center"/>
+                                    <Button Grid.Column="1" Content="Удалить" FontSize="16" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Функции" FontSize="18">
+            <Grid Background="#FFE5E5E5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <TextBox x:Name="FunctionNameTextBox" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="f" VerticalAlignment="Top" Width="26" Height="30" FontSize="20" TextAlignment="Center"/>
+                <Label Content="(" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="24" Height="40" Width="19" Margin="36,0,0,0"/>
+                <TextBox x:Name="FunctionArgumentTextBox" HorizontalAlignment="Left" Margin="55,10,0,0" TextWrapping="Wrap" Text="y" VerticalAlignment="Top" Width="30" Height="30" FontSize="20" TextAlignment="Center"/>
+                <Label Content=") =" HorizontalAlignment="Left" Margin="85,0,0,0" VerticalAlignment="Top" FontSize="24" Height="40" Width="39"/>
+                <TextBox x:Name="FunctionBodyTextBox" Margin="129,11,105,0" TextWrapping="Wrap" Text="x*2" VerticalAlignment="Top" Height="29" FontSize="20"/>
+                <Button Content="Добавить" Margin="0,11,10,0" VerticalAlignment="Top" Height="29" FontSize="16" HorizontalAlignment="Right" Width="84"/>
+
+                <ScrollViewer Margin="5,50,5,5">
+                    <ItemsControl ItemsSource="{Binding Functions}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid HorizontalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding}" FontSize="20" VerticalAlignment="Center"/>
+                                    <Button Grid.Column="1" Content="Удалить" FontSize="16" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </TabItem>
+    </TabControl>
+
+    <TextBlock Grid.Column="0" Grid.Row="0" Margin="10" TextWrapping="Wrap" Text="2+2" FontSize="30" TextAlignment="Right" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+
+    <Grid Grid.Column="0" Grid.Row="1" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Button Content="(" Grid.Row="0" Grid.Column="0" FontSize="20" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Content=")" Grid.Row="0" Grid.Column="1" FontSize="20" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Content="C" Grid.Row="0" Grid.Column="2" FontSize="20" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Content="&lt;" Grid.Row="0" Grid.Column="3" FontSize="20" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Content="7" Grid.Row="1" Grid.Column="0" FontSize="20" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Content="8" Grid.Row="1" Grid.Column="1" FontSize="20" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Content="9" Grid.Row="1" Grid.Column="2" FontSize="20" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Content="/" Grid.Row="1" Grid.Column="3" FontSize="20" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Content="4" Grid.Row="2" Grid.Column="0" FontSize="20" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Content="5" Grid.Row="2" Grid.Column="1" FontSize="20" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Content="6" Grid.Row="2" Grid.Column="2" FontSize="20" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Content="*" Grid.Row="2" Grid.Column="3" FontSize="20" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Content="1" Grid.Row="3" Grid.Column="0" FontSize="20" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Content="2" Grid.Row="3" Grid.Column="1" FontSize="20" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Content="3" Grid.Row="3" Grid.Column="2" FontSize="20" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Content="-" Grid.Row="3" Grid.Column="3" FontSize="20" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Content="." Grid.Row="4" Grid.Column="0" FontSize="20" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Content="0" Grid.Row="4" Grid.Column="1" FontSize="20" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Content="=" Grid.Row="4" Grid.Column="2" FontSize="20" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Button Content="+" Grid.Row="4" Grid.Column="3" FontSize="20" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
     </Grid>
+</Grid>
 </Window>

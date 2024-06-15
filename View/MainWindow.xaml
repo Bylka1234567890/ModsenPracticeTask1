@@ -32,10 +32,12 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
                                     <TextBlock Text="{Binding}" FontSize="20" VerticalAlignment="Center"/>
-                                        <Button Grid.Column="1" Content="Удалить" FontSize="16" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Center"  Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}"/>
-                                </Grid>
+                                    <Button Grid.Column="1" Content="Добавить" FontSize="16" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Center" Command="{Binding DataContext.InsertVariableCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}"/>
+                                    <Button Grid.Column="2" Content="Удалить" FontSize="16" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Center" Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}"/>
+                                    </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
@@ -71,7 +73,7 @@
         </TabItem>
     </TabControl>
 
-    <TextBlock Grid.Column="0" Grid.Row="0" Margin="10" TextWrapping="Wrap" Text="2+2" FontSize="30" TextAlignment="Right" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+    <TextBlock Text="{Binding CalculatorInput, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" Grid.Row="0" Margin="10" TextWrapping="Wrap" FontSize="30" TextAlignment="Right" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
 
     <Grid Grid.Column="0" Grid.Row="1" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.RowDefinitions>

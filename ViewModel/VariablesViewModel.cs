@@ -30,16 +30,29 @@ namespace Сalculator.ViewModel
             }
         }
 
+        private string _calculatorInput;
+        public string CalculatorInput
+        {
+            get { return _calculatorInput; }
+            set
+            {
+                _calculatorInput = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ObservableCollection<Variable> Variables { get; set; }
 
         public ICommand AddCommand { get; set; }
         public ICommand RemoveCommand { get; set; }
+        public ICommand InsertVariableCommand { get; set; }
 
         public VariablesViewModel()
         {
             Variables = new ObservableCollection<Variable>();
             AddCommand = new RelayCommand(AddItem);
             RemoveCommand = new RelayCommand<Variable>(RemoveItem);
+            InsertVariableCommand = new RelayCommand<Variable>(InsertVariable);
         }
 
         private void AddItem()
@@ -57,6 +70,14 @@ namespace Сalculator.ViewModel
             if (Variables.Contains(variable))
             {
                 Variables.Remove(variable);
+            }
+        }
+
+        private void InsertVariable(Variable variable)
+        {
+            if (variable != null)
+            {
+                CalculatorInput += variable.Name;
             }
         }
 
